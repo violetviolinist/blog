@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+    <style>
+        /* Fallback styles in case the CSS file doesn't load */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.5;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="path-display">
+            <span class="path">
+                {{ if .IsHome }}
+                    <a href="/">my</a>/
+                {{ else }}
+                    <!-- Build the breadcrumb path -->
+                    {{ $path := slice }}
+                    {{ $page := . }}
+                    
+                    <!-- Add the current page to the path -->
+                    {{ if not .IsSection }}
+                        {{ $path = $path | append (dict "title" (.Title | lower) "url" .RelPermalink) }}
+                    {{ end }}
+                    
+                    <!-- Add all ancestors to the path -->
+                    {{ $parent := .Parent }}
+                    {{ $totalLength := 0 }}
+                    
+                    <!-- Start with home link -->
+                    {{ $path = slice (dict "title" "my" "url" "/") }}
+                    {{ $totalLength = add $totalLength 1 }}
+                    
+                    <!-- Build the path by traversing up the hierarchy -->
+                    {{ $scratch := newScratch }}
+                    {{ $scratch.Set "current" . }}
+                    
+                    <!-- Function to get ancestors in correct order -->
+                    {{ $ancestors := slice }}
+                    {{ $page := . }}
+                    
+                    <!-- Traverse up the hierarchy to build the complete path -->
+                    {{ $currentPage := . }}
+                    {{ $sections := slice }}
+                    
+                    <!-- If this is a regular page, start with its parent -->
+                    {{ if not .IsSection }}
+                        {{ $sections = $sections | append (dict "title" (.Title | lower) "url" .RelPermalink) }}
+                        {{ $currentPage = .Parent }}
+                    {{ end }}
+                    
+                    <!-- Add all parent sections by traversing up the hierarchy -->
+                    {{ $temp := $currentPage }}
+                    {{ if ne $temp.Kind "home" }}
+                        {{ $sections = $sections | append (dict "title" ($temp.Title | lower) "url" $temp.RelPermalink) }}
+                        {{ $temp = $temp.Parent }}
+                        
+                        {{ if ne $temp.Kind "home" }}
+                            {{ $sections = $sections | append (dict "title" ($temp.Title | lower) "url" $temp.RelPermalink) }}
+                            {{ $temp = $temp.Parent }}
+                            
+                            {{ if ne $temp.Kind "home" }}
+                                {{ $sections = $sections | append (dict "title" ($temp.Title | lower) "url" $temp.RelPermalink) }}
+                                {{ $temp = $temp.Parent }}
+                                
+                                {{ if ne $temp.Kind "home" }}
+                                    {{ $sections = $sections | append (dict "title" ($temp.Title | lower) "url" $temp.RelPermalink) }}
+                                    {{ $temp = $temp.Parent }}
+                                    
+                                    {{ if ne $temp.Kind "home" }}
+                                        {{ $sections = $sections | append (dict "title" ($temp.Title | lower) "url" $temp.RelPermalink) }}
+                                        {{ $temp = $temp.Parent }}
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    
+                    <!-- Reverse the sections to get the correct order -->
+                    {{ $count := len $sections }}
+                    {{ $ancestors = slice }}
+                    
+                    <!-- Add sections in reverse order (from root to current) -->
+                    {{ range $i := seq $count }}
+                        {{ $index := sub $count $i }}
+                        {{ if ge $index 0 }}
+                            {{ $section := index $sections $index }}
+                            {{ $ancestors = $ancestors | append $section }}
+                            {{ $totalLength = add $totalLength (len $section.title) }}
+                            {{ $totalLength = add $totalLength 1 }} <!-- For the slash -->
+                        {{ end }}
+                    {{ end }}
+                    
+                    <!-- Combine home with ancestors -->
+                    {{ range $ancestors }}
+                        {{ $path = $path | append . }}
+                    {{ end }}
+                    
+                    <!-- Check if we need to truncate -->
+                    {{ if gt $totalLength 200 }}
+                        <!-- Show ellipsis and only the last 3 levels -->
+                        <a href="/">my</a>/...
+                        
+                        {{ $lastThree := slice }}
+                        {{ if gt (len $path) 3 }}
+                            {{ $lastThree = last 3 $path }}
+                        {{ else }}
+                            {{ $lastThree = after 1 $path }} <!-- Skip home -->
+                        {{ end }}
+                        
+                        {{ range $i, $part := $lastThree }}
+                            <a href="{{ $part.url }}">{{ $part.title }}</a>/
+                        {{ end }}
+                    {{ else }}
+                        <!-- Show the full path -->
+                        {{ range $i, $part := $path }}<a href="{{ $part.url }}">{{ $part.title }}</a>/{{ end }}
+                    {{ end }}
+                {{ end }}
+            </span>
+        </div>
+    </header>
+    
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+    
+    <footer>
+        <p>Built with <a rel="noopener noreferrer" target="_blank" href="https://gohugo.io">Hugo</a></p>
+    </footer>
+</body>
+</html>

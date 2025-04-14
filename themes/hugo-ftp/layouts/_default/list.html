@@ -1,0 +1,58 @@
+{{ define "main" }}
+    <div class="ftp-listing">
+        <table class="listing-table">
+            <thead>
+                <tr>
+                    <th class="icon-col"></th>
+                    <th class="name-col">Name</th>
+                    <th class="date-col">Published</th>
+                    <th class="date-col">Updated</th>
+                    <th class="size-col">Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add parent directory link (..) for non-root pages -->
+                {{ if not .IsHome }}
+                <tr class="directory-row">
+                    <td class="icon-col">📁</td>
+                    <td class="name-col"><a href="{{ .Parent.RelPermalink }}">..</a></td>
+                    <td class="date-col">-</td>
+                    <td class="date-col">-</td>
+                    <td class="size-col">-</td>
+                </tr>
+                {{ end }}
+                
+                <!-- List sections (directories) first, sorted alphabetically -->
+                {{ $sections := .Sections.ByTitle }}
+                {{ range $sections }}
+                <tr class="directory-row">
+                    <td class="icon-col">📁</td>
+                    <td class="name-col"><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+                    <td class="date-col">-</td>
+                    <td class="date-col">-</td>
+                    <td class="size-col">-</td>
+                </tr>
+                {{ end }}
+                
+                <!-- List pages (files) next, sorted by date (newest first) -->
+                {{ $pages := .Pages.ByPublishDate.Reverse }}
+                {{ range where $pages "Kind" "page" }}
+                <tr class="file-row">
+                    <td class="icon-col">📄</td>
+                    <td class="name-col"><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+                    <td class="date-col">{{ .PublishDate.Format "2006-01-02" }}</td>
+                    <td class="date-col">{{ if .Lastmod }}{{ .Lastmod.Format "2006-01-02" }}{{ else }}-{{ end }}</td>
+                    <td class="size-col">{{ .WordCount }}</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Display content from _index.md for all section pages -->
+    {{ if .Content }}
+    <div class="section-content">
+        {{ .Content }}
+    </div>
+    {{ end }}
+{{ end }}

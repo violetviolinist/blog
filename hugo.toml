@@ -1,0 +1,45 @@
+baseURL = "https://example.com/"
+languageCode = "en-us"
+title = "Jay Parekh"
+theme = "hugo-ftp"
+
+# Enable syntax highlighting
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+# Enable emoji support
+enableEmoji = true
+
+# Default number of elements per page
+pagination = { pagerSize = 10 }
+
+# Configure permalinks
+[permalinks]
+  posts = "/:section/:filename/"
+
+# Menu configuration
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+# Site parameters
+[params]
+  # Site description
+  description = "A personal blog with an FTP server interface"
+  
+  # Author information
+  [params.author]
+    name = "Your Name"
+    bio = "A short bio about yourself"
+    
+  # Social media links
+  [params.social]
+    github = "yourusername"
+    twitter = "yourusername"
+    linkedin = "yourusername"

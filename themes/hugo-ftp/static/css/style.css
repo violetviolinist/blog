@@ -1,0 +1,222 @@
+/* FTP Theme Styling */
+
+/* Base Styles */
+:root {
+    --bg-color: #f8f8f8;
+    --text-color: #333;
+    --link-color: #0066cc;
+    --link-hover-color: #004080;
+    --border-color: #ddd;
+    --header-bg: #eee;
+    --row-hover: #f0f0f0;
+    --dir-color: #4a6fa5;
+    --file-color: #333;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* Path Display */
+.path-display {
+    background-color: var(--header-bg);
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+}
+
+.path {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+}
+
+/* FTP Listing Table */
+.ftp-listing {
+    margin-bottom: 30px;
+}
+
+.listing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.listing-table th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border-color);
+    font-weight: bold;
+}
+
+.listing-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.listing-table tr:hover {
+    background-color: var(--row-hover);
+}
+
+/* Column Widths */
+.icon-col {
+    width: 30px;
+    text-align: center;
+}
+
+.name-col {
+    min-width: 200px;
+}
+
+.date-col {
+    width: 120px;
+}
+
+.size-col {
+    width: 80px;
+    text-align: right;
+}
+
+/* Directory and File Styling */
+.directory-row .name-col a {
+    color: var(--dir-color);
+    font-weight: bold;
+}
+
+.file-row .name-col a {
+    color: var(--file-color);
+}
+
+/* Home and Section Content */
+.home-content,
+.section-content {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Post Styling */
+.post {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-header {
+    margin-bottom: 30px;
+}
+
+.post-title {
+    margin-bottom: 10px;
+}
+
+.post-meta {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.post-meta span {
+    margin-right: 15px;
+}
+
+.post-content {
+    line-height: 1.6;
+}
+
+.post-content p, 
+.post-content ul, 
+.post-content ol {
+    margin-bottom: 20px;
+}
+
+.post-content h2, 
+.post-content h3, 
+.post-content h4 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+.post-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.post-tags {
+    margin-bottom: 20px;
+}
+
+.tag {
+    background-color: #eee;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .date-col {
+        display: none;
+    }
+    
+    .listing-table th, 
+    .listing-table td {
+        padding: 8px 6px;
+    }
+    
+    .name-col {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .size-col {
+        display: none;
+    }
+    
+    .name-col {
+        min-width: 120px;
+    }
+}
