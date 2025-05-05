@@ -91,7 +91,7 @@ a:hover {
 
 .size-col {
     width: 80px;
-    text-align: right;
+    /* text-align: right; */
 }
 
 /* Directory and File Styling */

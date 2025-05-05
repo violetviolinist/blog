@@ -1,45 +1,99 @@
-baseURL = "https://example.com/"
-languageCode = "en-us"
-title = "Jay Parekh"
-theme = "hugo-ftp"
+# baseURL = "https://parekhjay.com/"
+# languageCode = "en-us"
+# title = "Jay Parekh"
+# theme = "hugo-ftp"
 
-# Enable syntax highlighting
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+# # Enable syntax highlighting
+# pygmentsCodeFences = true
+# pygmentsUseClasses = true
 
-# Enable emoji support
-enableEmoji = true
+# # Enable emoji support
+# enableEmoji = true
 
-# Default number of elements per page
-pagination = { pagerSize = 10 }
+# # Default number of elements per page
+# pagination = { pagerSize = 10 }
 
-# Configure permalinks
-[permalinks]
-  posts = "/:section/:filename/"
+# # Configure permalinks
+# [permalinks]
+#   posts = "/:section/:filename/"
 
-# Menu configuration
-[menu]
-  [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 2
+# # Menu configuration
+# [menu]
+#   [[menu.main]]
+#     name = "Home"
+#     url = "/"
+#     weight = 1
+#   [[menu.main]]
+#     name = "About"
+#     url = "/about/"
+#     weight = 2
 
-# Site parameters
-[params]
-  # Site description
-  description = "A personal blog with an FTP server interface"
+# # Site parameters
+# [params]
+#   # Site description
+#   description = "A personal blog with an FTP server interface"
   
-  # Author information
-  [params.author]
-    name = "Your Name"
-    bio = "A short bio about yourself"
+#   # Author information
+#   [params.author]
+#     name = "Your Name"
+#     bio = "A short bio about yourself"
     
-  # Social media links
-  [params.social]
-    github = "yourusername"
-    twitter = "yourusername"
-    linkedin = "yourusername"
+#   # Social media links
+#   [params.social]
+#     github = "yourusername"
+#     twitter = "yourusername"
+#     linkedin = "yourusername"
+
+
+# Base URL used when generating links to your pages
+# Set to the URL for your site
+baseURL = "https://parekhjay.com"
+
+# The name of this wonderful theme ;-).
+theme = 'hugo-bearblog'
+
+# Basic metadata configuration for your blog.
+title = "no-nonesense tech"
+author = "Jay Parekh"
+# copyright = "Copyright © 2020, Jane Doe."
+languageCode = "en-US"
+
+# Generate a nice robots.txt for SEO
+enableRobotsTXT = true
+
+# Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
+disableKinds = ["taxonomy"]
+ignoreErrors = ["error-disable-taxonomy"]
+[permalinks]
+  blog = "/:slug/"
+  tags = "/blog/:slug"
+
+[params]
+  # The "description" of your website. This is used in the meta data of your generated html.
+  description = "Jay Parekh's Blog"
+
+  # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
+  # Hint: It's good practise to also put a "favicon.ico"-file into your "static"-folder.
+  favicon = "images/favicon.png"
+
+  # These "images" are used for the structured data templates. This will show up, when
+  # services like Twitter or Slack want to generate a preview of a link to your site.
+  # See https://gohugo.io/templates/internal#twitter-cards and
+  # https://gohugo.io/templates/internal#open-graph.
+  images = ["images/share.png"]
+
+  # Another "title" :-). This one is used as the site_name on the Hugo's internal
+  # opengraph structured data template.
+  # See https://ogp.me/ and https://gohugo.io/templates/internal#open-graph.
+  title = "Jay Parekh's Blog"
+
+  # This theme will, by default, inject a made-with-line at the bottom of the page.
+  # You can turn it off, but we would really appreciate if you don’t :-).
+  # hideMadeWithLine = true
+
+  # By default, this theme displays dates with a format like "02 Jan, 2006", but
+  # you can customize it by setting the `dateFormat` param in your site's config
+  # file. See [Hugo's Format function docs](https://gohugo.io/functions/format/)
+  # for details. An example TOML config that uses [ISO
+  # 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
+  # dateFormat = "2006-01-02"
