@@ -81,7 +81,7 @@ jobs:
           file: blog-tech.Dockerfile
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: violetviolinist/pomodoro-app:latest
+          tags: violetviolinist/blog-tech:latest
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
