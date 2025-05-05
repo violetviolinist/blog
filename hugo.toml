@@ -47,7 +47,7 @@
 
 # Base URL used when generating links to your pages
 # Set to the URL for your site
-baseURL = "https://blog.parekhjay.com"
+baseURL = "https://parekhjay.com"
 
 # The name of this wonderful theme ;-).
 theme = 'hugo-bearblog'
