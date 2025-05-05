@@ -36,9 +36,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: update-git-submodules
-        uses: sgoudham/update-git-submodules@v2.1.3
+
+      - name: install-bearblog-theme
+        run: git submodule add https://github.com/janraasch/hugo-bearblog.git themes/hugo-bearblog
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
