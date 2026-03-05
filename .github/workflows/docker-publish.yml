@@ -119,4 +119,4 @@ jobs:
           END
 
       - name: Run deploy shell script
-        run: ssh oracle /home/jay/deploy-blog-tech.sh
+        run: ssh oracle /home/ubuntu/deploy-blog-tech.sh
