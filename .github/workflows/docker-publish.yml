@@ -103,20 +103,20 @@ jobs:
 
       - name: Configure SSH
         env:
-          SSH_USER: ${{ secrets.HETZNER_SSH_USER }}
-          SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
-          SSH_HOST: ${{ secrets.HETZNER_SSH_HOST }}
+          SSH_USER: ${{ secrets.ORACLE_SSH_USER }}
+          SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
+          SSH_HOST: ${{ secrets.ORACLE_SSH_HOST }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/hetzner.key
-          chmod 600 ~/.ssh/hetzner.key
+          echo "$SSH_KEY" > ~/.ssh/oracle.key
+          chmod 600 ~/.ssh/oracle.key
           cat >>~/.ssh/config <<END
-          Host hetzner
+          Host oracle
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/hetzner.key
+            IdentityFile ~/.ssh/oracle.key
             StrictHostKeyChecking no
           END
 
       - name: Run deploy shell script
-        run: ssh hetzner /home/jay/deploy-blog-tech.sh
+        run: ssh oracle /home/jay/deploy-blog-tech.sh
