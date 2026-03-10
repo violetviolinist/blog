@@ -1,7 +1,9 @@
----
-title: ""
-date: 2025-04-14
----
++++
+title = "Home"
+menu = "main"
+weight = 1
+date = 2025-04-14
++++
 
 # Hello
 
