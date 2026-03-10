@@ -1,4 +1,4 @@
-# baseURL = "https://origin.jprk.dev/blog"
+# baseURL = "https://personal-site.parekhjayemail.com"
 # languageCode = "en-us"
 # title = "Jay Parekh"
 # theme = "hugo-ftp"
@@ -47,7 +47,7 @@
 
 # Base URL used when generating links to your pages
 # Set to the URL for your site
-baseURL = "https://origin.jprk.dev"
+baseURL = "https://personal-site.parekhjayemail.com"
 
 # The name of this wonderful theme ;-).
 theme = 'hugo-bearblog'
